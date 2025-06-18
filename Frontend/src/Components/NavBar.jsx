@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Menu, X } from 'lucide-react';
 import Button from './Button.jsx'
+import { Link } from 'react-router-dom';
 
 const navItems = [
     { id: 1, label: 'Home', path: '/' },
@@ -23,17 +24,17 @@ function NavBar() {
 
             <div className="flex items-center justify-between px-4 py-4 max-w-screen-xl mx-auto md:px-8">
                 {/* Logo */}
-                <div className="flex items-center ">
+                <Link to={'/'} className="flex items-center ">
                     <img src="/Logo1.png" alt="Logo" className="h-10 sm:h-12" />
-                </div>
+                </Link>
 
 
                 <ul className="hidden md:flex gap-6 text-sm font-semibold text-gray-800 uppercase">
                     {navItems.map(item => (
                         <li key={item.id} className="relative group">
-                            <a href={item.path} className="hover:text-[#594a47] transition duration-200">
+                            <Link to={item.path} className="hover:text-[#594a47] transition duration-200">
                                 {item.label}
-                            </a>
+                            </Link>
                         </li>
                     ))}
                 </ul>
