@@ -1,0 +1,19 @@
+import React from 'react'
+import Button from './Button'
+
+function Hero() {
+  return (
+    <div className='flex flex-col py-4 md:flex-row justify-between  px-[5%] md:gap-3 gap-5'>
+        <div className='w-full md:w-[40%] md:pr-[4rem] flex flex-col justify-center items-center md:items-start gap-2'>
+            <h1 className='text-4xl md:text-5xl text-[#594a47] font-bold mb-2'>Descover Your Next Great Read</h1>
+            <p className='mb-2 md:text-xl text-[18px] '>Uncover captivating stories, enriching knowledge, and endless inspiration in our curated collection of books</p>
+            <Button variant="primary" className="px-6 text-xl"> Discover Books </Button>
+        </div>
+        <div className='w-full md:w-[58%]'>
+            <img src="/Banner.jpg" alt="Bnner img" />
+        </div>
+    </div>
+  )
+}
+
+export default Hero
