@@ -15,9 +15,9 @@ app.use(express.json({ limit: '16kb' }));
 // Enable CORS for all routes
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,  // Replace with your frontend URL
+    origin: process.env.CORS_ORIGIN || 'http://localhost:5173',  
     credentials: true, // Allow cookies to be sent in requests and responses  // some legacy browsers (IE11, various older browsers) choke on 204
-    methods: ["GET", "POST", "PATCH", "DELETE"],
+    methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
 }));
 app.use(express.urlencoded({
     extended: true,
@@ -34,5 +34,14 @@ app.use(cookieParser());
 // }); 
 // working ✅
 
+app.post('/test-body', (req, res) => {
+  console.log("req.body:", req.body);
+  res.json({ received: req.body });
+});
+ import userRouter from './Routes/user.routes.js';
+ import bookRouter from './Routes/book.routes.js'
+
+ app.use('/api/auth', userRouter);
+ app.use('/api', bookRouter);
 
 export default app;

@@ -5,14 +5,17 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-     "start": "node -r dotenv/config --experimental-json-modules src/index.js",
+    "start": "node -r dotenv/config --experimental-json-modules src/index.js",
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed:admin": "node seedAdmin.js"
   },
   "author": "Altaf Khan",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "jest": "^30.0.1",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.1"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",

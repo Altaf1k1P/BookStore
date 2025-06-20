@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 
-function ReviewForm({ onSubmit }) {
+function ReviewForm({ onSubmit, submitting }) {
   const [formData, setFormData] = useState({
-    name: '',
     rating: 5,
     comment: '',
   });
+
+  const isAuthenticated = useSelector(state => !!state.auth.accessToken);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,9 +22,17 @@ function ReviewForm({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.comment) return;
+
+    if (!isAuthenticated) {
+      alert("You must be logged in to submit a review.");
+      navigate("/login");
+      return;
+    }
+
+    if (!formData.comment) return;
+
     onSubmit(formData);
-    setFormData({ name: '', rating: 5, comment: '' });
+    setFormData({ rating: 5, comment: '' });
   };
 
   return (
@@ -28,16 +40,6 @@ function ReviewForm({ onSubmit }) {
       onSubmit={handleSubmit}
       className="mb-6 flex flex-col gap-4 p-4 border border-gray-200 rounded-lg"
     >
-      <input
-        type="text"
-        name="name"
-        placeholder="Your name"
-        value={formData.name}
-        onChange={handleChange}
-        className="border p-2 rounded outline-[#05668D]"
-        required
-      />
-
       <select
         name="rating"
         value={formData.rating}
@@ -62,9 +64,11 @@ function ReviewForm({ onSubmit }) {
 
       <Button
         type="submit"
-        variant="primary" className="px-6 w-max"
+        variant="primary"
+        className="px-6 w-max"
+        disabled={submitting}
       >
-        Submit Review
+        {submitting ? "Submitting..." : "Submit Review"}
       </Button>
     </form>
   );
