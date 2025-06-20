@@ -8,7 +8,8 @@
     "start": "node -r dotenv/config --experimental-json-modules src/index.js",
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed:admin": "node seedAdmin.js"
+    "seed:admin": "node seedAdmin.js",
+     "build": "echo \"no build needed\""
   },
   "author": "Altaf Khan",
   "license": "ISC",
