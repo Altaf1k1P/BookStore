@@ -13,14 +13,16 @@ export const uploadOnCloudinary = async (localFilePath) => {
   if (!localFilePath) return null;
 
   try {
-    const result = await cloudinary.uploader.upload(localFilePath, {
-      folder: "book_covers",
-      resource_type: "image",
-      transformation: [
-        { width: 800, crop: "scale" },
-        { quality: "auto:good" }
-      ],
-    });
+   const result = await cloudinary.uploader.upload(localFilePath, {
+  folder: "book_covers",
+  resource_type: "image",
+  transformation: [
+    { width: 800, crop: "scale" },
+    { quality: "auto:good" },
+    { fetch_format: "webp" },
+    { flags: "lossy" } // optional, helps reduce file size
+  ],
+});
 
     fs.unlinkSync(localFilePath); // ✅ Delete temp file
     return { url: result.secure_url, public_id: result.public_id };
