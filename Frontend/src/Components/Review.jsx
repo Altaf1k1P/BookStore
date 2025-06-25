@@ -5,9 +5,13 @@ function Review({ reviewer, rating, comment, avatar }) {
   return (
     <div className="border-b border-gray-200 pb-4 mb-4 flex items-start gap-4">
       <img
-        src={avatar || '/default-avatar.png'}
+        src={avatar || '/default-avatar.webp'}
         alt={reviewer}
         className="w-10 h-10 rounded-full object-cover border shadow-sm"
+        loading="lazy"
+        width={40}
+        height={40}
+        decoding="async"
       />
 
       <div className="flex-1">

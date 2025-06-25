@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row justify-between gap-10">
 
         <div className="md:w-1/3">
-          <img src="/Logo.png" alt="BookReview Logo" className="w-[100px] mb-4" />
+          <img src="/Logo.webp" alt="BookReview Logo" className="w-[100px] mb-4" loading='lazy' decoding="async" width={100} height={40} />
           <p className="text-sm mb-3">
             <span className="text-yellow-400">BookReview</span> is your go-to platform for discovering, reviewing, and sharing your favorite reads. Whether you're into fiction, non-fiction, or indie titles, our community-driven app helps you explore books, share thoughts, and connect with fellow readers across the world.
           </p>

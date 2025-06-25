@@ -11,7 +11,7 @@ function Hero() {
           <Link to={'/all-books'}> <Button variant="primary" className="px-6 text-xl"> Descover Books </Button></Link> 
         </div>
         <div className='w-full md:w-[58%]'>
-            <img src="/Banner.jpg" alt="Bnner img" />
+            <img src="/Banner.webp" alt="Banner img" loading='lazy' decoding="async" />
         </div>
     </div>
   )

@@ -27,7 +27,7 @@ function NavBar() {
 
       <div className="flex items-center justify-between px-4 py-4 max-w-screen-xl mx-auto md:px-8 relative">
         <Link to="/" className="flex items-center">
-          <img src="/Logo1.png" alt="Logo" className="h-10 sm:h-12" />
+          <img src="/Logo1.webp" alt="Logo" className="h-10 sm:h-12"  loading='lazy' decoding="async"/>
         </Link>
 
         <ul className="hidden md:flex gap-6 text-sm font-semibold text-gray-800 uppercase">
