@@ -2,7 +2,7 @@
 import { Book } from "../models/Books.js";
 import { asyncHandler } from "../Utils/asyncHandler.js";
 import { ApiError } from "../Utils/ApiError.js";
-import { uploadOnCloudinary } from "../Utils/cloudinary.js";
+import { uploadOnCloudinary, deleteFromCloudinary } from "../Utils/cloudinary.js";
 
 // ✅ Admin adds a book
  const addBook = asyncHandler(async (req, res) => {
@@ -116,6 +116,46 @@ const getAllBooks = asyncHandler(async (req, res) => {
     success: true,
     message: "Review added",
     book,
+  });
+});
+
+
+// img update
+export const imageUpdate = asyncHandler(async (req, res) => {
+  const { bookId } = req.params;
+
+  // 1. Find book
+  const book = await Book.findById(bookId);
+  if (!book) throw new ApiError(404, "Book not found");
+
+  // 2. Check for uploaded file
+  const localFilePath = req.file?.path;
+  if (!localFilePath) throw new ApiError(400, "No image file uploaded");
+
+  // 3. Delete previous image if exists
+  if (book.coverImage?.public_id) {
+    await deleteFromCloudinary(book.coverImage.public_id);
+  }
+
+  // 4. Upload new image to Cloudinary
+  const uploadedImage = await uploadOnCloudinary(localFilePath);
+  if (!uploadedImage) throw new ApiError(500, "Failed to upload image");
+
+  // 5. Update book with new image details
+  book.coverImage = {
+    url: uploadedImage.url,
+    public_id: uploadedImage.public_id,
+  };
+  await book.save();
+
+  // 6. Response
+  res.status(200).json({
+    success: true,
+    message: "Book cover image updated successfully",
+    data: {
+      coverImage: book.coverImage.url,
+      publicId: book.coverImage.public_id,
+    },
   });
 });
 
