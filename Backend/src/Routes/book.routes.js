@@ -1,11 +1,11 @@
-import express from 'express';
+import {Router} from 'express';
 import { getAllBooks, getBookById, getRecentBooks, addBook, addReview, imageUpdate } from '../Controller/book.controller.js'; 
 import { verifyAccessToken } from '../middleware/verifyAccessToken.js';
 import { isAdmin } from '../middleware/middleware.isAdmin.js';
 import { upload } from "../middleware/multer.middleware.js";
 
 
-const router = express.Router();
+const router = Router();
 
 
 router.post(
