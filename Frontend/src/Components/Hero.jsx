@@ -18,7 +18,7 @@ function Hero() {
           height="600"
           decoding="async"
           fetchpriority="high"
-          style="width: 100%; height: auto;"
+          style={{ width: "100%", height: "auto" }}
         />
       </div>
     </div>
