@@ -41,9 +41,12 @@ app.post('/test-body', (req, res) => {
  import userRouter from './Routes/user.routes.js';
  import bookRouter from './Routes/book.routes.js'
  import FavoriteBookRouter from './Routes/FavoriteBook.routes.js';
+ import CartRouter from './Routes/Cart.routes.js';
 
  app.use('/api/auth', userRouter);
  app.use('/api', bookRouter);
  app.use('/api',FavoriteBookRouter);
+ app.use('/api',CartRouter);
+
 
 export default app;
