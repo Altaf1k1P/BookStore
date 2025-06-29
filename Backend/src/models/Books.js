@@ -22,4 +22,4 @@ const bookSchema = new mongoose.Schema({
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 }, { timestamps: true });
 
-export const Book = mongoose.model('Book', bookSchema);
+export const  Book = mongoose.model('Book', bookSchema);
